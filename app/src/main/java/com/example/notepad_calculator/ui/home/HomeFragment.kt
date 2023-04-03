@@ -1,8 +1,8 @@
 package com.example.notepad_calculator.ui.home
 
-import android.R
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +11,7 @@ import com.example.notepad_calculator.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.notepad_calculator.R
 
 
 class HomeFragment : Fragment() {
@@ -40,6 +41,8 @@ class HomeFragment : Fragment() {
         adapter = MovieAdapter()
         binding.rvItemList.adapter = adapter
 
+        //Toast.makeText(this.context, "Refreshed", Toast.LENGTH_LONG).show() //Notification
+
         /*recyclerView.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
         linearLayoutManager.stackFromEnd = true
@@ -65,7 +68,6 @@ class HomeFragment : Fragment() {
         rv_item_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rv_item_list.adapter = adapter*/
         val root: View = binding.root
-
         //val textView: TextView = binding.textHome
         //homeViewModel.text.observe(viewLifecycleOwner, Observer {
         //    textView.text = it
@@ -77,12 +79,13 @@ class HomeFragment : Fragment() {
         val inflater = LayoutInflater
         inflater.inflate(R.menu.buttons, menu)
         return true
-    }
+    }*/
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.refresh -> {
+    /*override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.accessibilityActionShowOnScreen -> {
             adapter.refreshMovies()
-            Toast.makeText(this.baseContext, "Refreshed", Toast.LENGTH_LONG).show())
+
+            //Toast.makeText(this.baseContext, "Refreshed", Toast.LENGTH_LONG).show())
             true
         }
         else -> {

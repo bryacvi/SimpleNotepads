@@ -18,6 +18,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): MovieViewHolder {
 
+        Log.d("debuggeando", "refreshMovies")
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item, parent, false)
 
@@ -25,7 +26,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.view.name.text = movies[position].toString()
+        holder.view.name.text = movies[position].name
     }
 
     override fun getItemCount() = movies.size
@@ -36,7 +37,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         movies.add(Moviee(0,"Guardians of the Galaxy"))
         movies.add(Moviee(1, "Avengers: Infinity War"))
         movies.add(Moviee(2,"Thor: Ragnorok"))
-        Log.d("debuggeando", "refreshMovies")
         notifyDataSetChanged()
     }
 }
