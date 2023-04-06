@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.notepad_calculator"
+        applicationId 'com.example.simple_notepads'
         minSdk 28
         targetSdk 33
         versionCode 1
