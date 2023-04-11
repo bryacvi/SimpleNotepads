@@ -1,11 +1,11 @@
-package com.example.notepad_calculator.ui.home
+package com.example.simple_notepads.ui.home
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notepad_calculator.R
+import com.example.simple_notepads.R
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {

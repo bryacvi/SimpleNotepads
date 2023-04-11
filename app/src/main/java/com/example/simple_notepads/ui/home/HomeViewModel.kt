@@ -1,7 +1,5 @@
-package com.example.notepad_calculator.ui.home
+package com.example.simple_notepads.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
