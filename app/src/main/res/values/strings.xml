@@ -12,4 +12,10 @@
 
     <string name="refresh">Refresh</string>
     <string name="about_welcome">Welcome to the about screen!</string>
+
+
+    <string name="hint_word">Word…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="add_word">Add word</string>
 </resources>

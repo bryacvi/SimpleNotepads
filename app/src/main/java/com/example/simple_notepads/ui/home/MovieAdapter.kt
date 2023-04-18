@@ -4,8 +4,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.R
+import com.example.simple_notepads.ui.noteManagement.Word
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
@@ -38,5 +40,17 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         movies.add(Moviee(1, "Avengers: Infinity War"))
         movies.add(Moviee(2,"Thor: Ragnorok"))
         notifyDataSetChanged()
+    }
+
+    companion object {
+        private val WORDS_COMPARATOR = object : DiffUtil.ItemCallback<Word>() {
+            override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean {
+                return oldItem === newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
+                return oldItem.word == newItem.word
+            }
+        }
     }
 }
