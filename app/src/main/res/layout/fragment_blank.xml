@@ -16,9 +16,4 @@
         android:layout_margin="@dimen/big_padding"
         android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
 </FrameLayout>

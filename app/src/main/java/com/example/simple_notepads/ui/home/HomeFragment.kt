@@ -1,13 +1,11 @@
 package com.example.simple_notepads.ui.home
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.BlankFragment
@@ -16,7 +14,7 @@ import com.example.simple_notepads.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    private val newWordActivityRequestCode = 1
+    private var newWordActivityRequestCode = 1
     lateinit var adapter: MovieAdapter
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
@@ -33,14 +31,20 @@ class HomeFragment : Fragment() {
         adapter = MovieAdapter()
         binding.rvItemList.adapter = adapter
 
-        binding.fab.setOnClickListener {
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(id, BlankFragment())
-            transaction.commit()
-        }
-
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.rvItemList.layoutManager = linearLayoutManager
+
+        binding.fab.setOnClickListener {
+
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(id, BlankFragment())
+            //transaction.remove(HomeFragment())
+            //transaction.hide(HomeFragment())
+            //transaction.show(BlankFragment())
+            //transaction.add(id, BlankFragment())
+            //transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
         val root: View = binding.root
         return root
