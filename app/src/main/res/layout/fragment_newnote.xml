@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.noteManagement.NewNoteFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edit_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/min_height"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_word"
+        android:inputType="textAutoComplete"
+        android:layout_margin="@dimen/big_padding"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="382dp"
+        android:layout_height="68dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/big_padding"
+        android:layout_marginLeft="@dimen/big_padding"
+        android:layout_marginTop="171dp"
+        android:layout_marginEnd="@dimen/big_padding"
+        android:layout_marginRight="@dimen/big_padding"
+        android:layout_marginBottom="491dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_save"
+        android:textColor="@color/buttonLabel" />
+
+</FrameLayout>

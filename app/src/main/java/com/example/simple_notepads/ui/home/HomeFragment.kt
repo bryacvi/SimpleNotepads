@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.simple_notepads.BlankFragment
+import com.example.simple_notepads.R
 import com.example.simple_notepads.databinding.FragmentHomeBinding
+import com.example.simple_notepads.ui.noteManagement.NewNoteFragment
 
 
 class HomeFragment : Fragment() {
 
-    private var newWordActivityRequestCode = 1
     lateinit var adapter: MovieAdapter
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
@@ -35,15 +37,7 @@ class HomeFragment : Fragment() {
         binding.rvItemList.layoutManager = linearLayoutManager
 
         binding.fab.setOnClickListener {
-
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(id, BlankFragment())
-            //transaction.remove(HomeFragment())
-            //transaction.hide(HomeFragment())
-            //transaction.show(BlankFragment())
-            //transaction.add(id, BlankFragment())
-            //transaction.addToBackStack(null)
-            transaction.commit()
+            findNavController().navigate(R.id.action_nav_home_to_NewNoteFragment)
         }
 
         val root: View = binding.root

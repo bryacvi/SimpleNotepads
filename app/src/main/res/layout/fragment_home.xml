@@ -18,9 +18,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|end"
+        android:contentDescription="@string/nav_header_subtitle"
+        app:navGraph="@navigation/nav_graph"
         app:srcCompat="@drawable/ic_option_add"
-        app:tint="?attr/colorPrimary"
-        app:navGraph="@navigation/nav_graph"/>
+        app:tint="?attr/colorPrimary" />
 
 
 </RelativeLayout>
