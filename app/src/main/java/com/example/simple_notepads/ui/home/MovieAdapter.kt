@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.list_item.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     var movies: MutableList<Moviee> = mutableListOf()
+    var moviesAux: MutableList<Moviee> = mutableListOf()
+    private var count = 0
 
     init { refreshMovies() }
 
@@ -34,12 +36,24 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     override fun getItemCount() = movies.size
 
     fun refreshMovies() {
+        moviesAux = movies
+        count = itemCount
         movies.clear()
 
-        movies.add(Moviee(0,"Guardians of the Galaxy"))
-        movies.add(Moviee(1, "Avengers: Infinity War"))
-        movies.add(Moviee(2,"Thor: Ragnorok"))
+        for (i in moviesAux.indices) {
+            movies[i] = moviesAux[i]
+            addMovie(movies[i].toString())
+        }
+        moviesAux.clear()
+    }
+
+    fun addMovie(name: String) {
+        movies.add(Moviee(itemCount-1, name))
         notifyDataSetChanged()
+    }
+
+    fun deleteMovie(movie: Moviee) {
+
     }
 
     companion object {

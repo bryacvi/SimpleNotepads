@@ -11,10 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.example.simple_notepads.R
+import com.example.simple_notepads.ui.home.MovieAdapter
 
 class NewNoteFragment : Fragment() {
 
+    lateinit var adapter: WordListAdapter
     private lateinit var viewModel: NewNoteViewModel
 
     override fun onCreateView(
@@ -27,7 +31,7 @@ class NewNoteFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(NewNoteViewModel::class.java)
-        // TODO: Use the ViewModel
+        adapter = WordListAdapter()
         val editWordView = view?.findViewById<EditText>(R.id.edit_word)
         val button = view?.findViewById<Button>(R.id.button_save)
 
@@ -40,7 +44,8 @@ class NewNoteFragment : Fragment() {
                 replyIntent.putExtra(EXTRA_REPLY, word)
                 activity?.setResult(Activity.RESULT_OK, replyIntent)
             }
-            activity?.finish()
+            //App crashes after pressing save
+            //activity?.finish()
         }
     }
 

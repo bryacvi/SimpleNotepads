@@ -24,6 +24,10 @@
         android:id="@+id/newNoteFragment"
         android:name="com.example.simple_notepads.ui.noteManagement.NewNoteFragment"
         android:label="New Note"
-        tools:layout="@layout/fragment_newnote" />
+        tools:layout="@layout/fragment_newnote" >
+        <action
+            android:id="@+id/action_newNoteFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 </navigation>

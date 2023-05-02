@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,13 +17,14 @@ import com.example.simple_notepads.R
 import com.example.simple_notepads.databinding.FragmentHomeBinding
 import com.example.simple_notepads.ui.noteManagement.NewNoteFragment
 import com.example.simple_notepads.ui.noteManagement.Word
+import com.example.simple_notepads.ui.noteManagement.WordListAdapter
 import com.example.simple_notepads.ui.noteManagement.WordViewModel
 import com.example.simple_notepads.ui.noteManagement.WordsApplication
 
 
 class HomeFragment : Fragment() {
 
-    lateinit var adapter: MovieAdapter
+    lateinit var adapter: WordListAdapter
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
     private lateinit var binding: FragmentHomeBinding
@@ -41,20 +40,27 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        adapter = MovieAdapter()
+        adapter = WordListAdapter()
         binding.rvItemList.adapter = adapter
 
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.rvItemList.layoutManager = linearLayoutManager
 
         binding.fab.setOnClickListener {
+            //crash after pressing add
+            //startActivityForResult(Intent(activity, NewNoteFragment::class.java), newWordActivityRequestCode)
             findNavController().navigate(R.id.action_nav_home_to_NewNoteFragment)
         }
 
-        val root: View = binding.root
-        return root
+        //crash from the start
+        //wordViewModel.allWords.observe(viewLifecycleOwner) { words ->
+            // Update the cached copy of the words in the adapter.
+        //    words.let { adapter.submitList(it) }
+        //}
+
+        return binding.root
     }
 
     override fun onDestroyView() {
