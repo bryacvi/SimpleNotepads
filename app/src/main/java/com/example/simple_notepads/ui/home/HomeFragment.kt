@@ -1,12 +1,9 @@
 package com.example.simple_notepads.ui.home
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -15,11 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.R
 import com.example.simple_notepads.databinding.FragmentHomeBinding
-import com.example.simple_notepads.ui.noteManagement.NewNoteFragment
-import com.example.simple_notepads.ui.noteManagement.Word
-import com.example.simple_notepads.ui.noteManagement.WordListAdapter
-import com.example.simple_notepads.ui.noteManagement.WordViewModel
-import com.example.simple_notepads.ui.noteManagement.WordsApplication
+import com.example.simple_notepads.examples.word.WordListAdapter
+import com.example.simple_notepads.examples.word.WordViewModel
+import com.example.simple_notepads.WordsApplication
+import com.example.simple_notepads.ui.noteManagement.WordViewModelFactory
 
 
 class HomeFragment : Fragment() {
@@ -38,7 +34,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -49,8 +45,6 @@ class HomeFragment : Fragment() {
         binding.rvItemList.layoutManager = linearLayoutManager
 
         binding.fab.setOnClickListener {
-            //crash after pressing add
-            //startActivityForResult(Intent(activity, NewNoteFragment::class.java), newWordActivityRequestCode)
             findNavController().navigate(R.id.action_nav_home_to_NewNoteFragment)
         }
 
@@ -68,20 +62,4 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
-        super.onActivityResult(requestCode, resultCode, intentData)
-
-        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            intentData?.getStringExtra(NewNoteFragment.EXTRA_REPLY)?.let { reply ->
-                val word = Word(reply)
-                wordViewModel.insert(word)
-            }
-        } else {
-            Toast.makeText(
-                activity?.applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
 }
