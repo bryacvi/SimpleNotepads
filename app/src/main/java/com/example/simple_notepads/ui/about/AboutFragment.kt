@@ -21,7 +21,7 @@ class AboutFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         aboutViewModel =
                 ViewModelProvider(this).get(AboutViewModel::class.java)
 
