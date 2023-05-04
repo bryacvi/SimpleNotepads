@@ -49,10 +49,10 @@ class HomeFragment : Fragment() {
         }
 
         //crash from the start
-        //wordViewModel.allWords.observe(viewLifecycleOwner) { words ->
-            // Update the cached copy of the words in the adapter.
-        //    words.let { adapter.submitList(it) }
-        //}
+        wordViewModel.allWords.observe(viewLifecycleOwner) { words ->
+//             Update the cached copy of the words in the adapter.
+            words.let { adapter.submitList(it) }
+        }
 
         return binding.root
     }
