@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
     private lateinit var binding: FragmentHomeBinding
+    private var deleteValue = false
 
     private val wordViewModel: WordViewModel by viewModels {
         WordViewModelFactory((activity?.application as WordsApplication).repository)
@@ -59,19 +61,20 @@ class HomeFragment : Fragment() {
             Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
             //wordViewModel.edit(Word(word))
         }*/
+        if (deleteValue) {
+            wordViewModel.wipeDB()
+        }
 
-        //crash from the start
         wordViewModel.allWords.observe(viewLifecycleOwner) { words ->
-//          Update the cached copy of the words in the adapter.
+        //Update the cached copy of the words in the adapter.
             words.let { adapter.submitList(it) }
         }
 
             return binding.root
-
         }
 
-    fun destroy () {
-        wordViewModel.wipeDB()
+    fun notification () {
+        deleteValue = true
     }
 
         companion object {

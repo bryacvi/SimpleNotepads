@@ -67,7 +67,9 @@ class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
                     val word = txtNoteContent?.text.toString()
                     Log.i("Buttons", "Delete button pressed")
                     //wordViewModel.remove(Word(word))
-                    adapter.destroy()
+                    //adapter.destroy()
+                    //adapter.update()
+                    adapter.notification()
                 }
 
                 view.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
