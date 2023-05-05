@@ -23,12 +23,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.R
 import com.example.simple_notepads.WordsApplication
+import com.example.simple_notepads.databinding.ActivityMainBinding
 import com.example.simple_notepads.examples.word.WordListAdapter.WordViewHolder
+import com.example.simple_notepads.ui.home.HomeFragment
+import com.example.simple_notepads.ui.home.HomeViewModel
 import com.example.simple_notepads.ui.noteManagement.WordViewModelFactory
 
 class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
@@ -54,6 +58,7 @@ class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
 
         companion object {
             fun create(parent: ViewGroup): WordViewHolder {
+                lateinit var adapter: HomeFragment
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.list_item, parent, false)
 
@@ -62,6 +67,7 @@ class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
                     val word = txtNoteContent?.text.toString()
                     Log.i("Buttons", "Delete button pressed")
                     //wordViewModel.remove(Word(word))
+                    adapter.destroy()
                 }
 
                 view.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
