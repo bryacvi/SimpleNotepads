@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var binding: FragmentHomeBinding
 
-    private val newWordActivityRequestCode = 1
     private val wordViewModel: WordViewModel by viewModels {
         WordViewModelFactory((activity?.application as WordsApplication).repository)
     }
@@ -48,18 +47,36 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_home_to_NewNoteFragment)
         }
 
+        /*view?.findViewById<Button>(R.id.btnDelete)?.setOnClickListener {
+            val txtNoteContent = view?.findViewById<TextView>(R.id.name)
+            //Log.i(TAG, "Delete button pressed")
+            val word = txtNoteContent?.text.toString()
+            wordViewModel.remove(Word(word))
+        }
+
+        view?.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
+            Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
+            //wordViewModel.edit(Word(word))
+        }*/
+
         //crash from the start
         wordViewModel.allWords.observe(viewLifecycleOwner) { words ->
-//             Update the cached copy of the words in the adapter.
+//          Update the cached copy of the words in the adapter.
             words.let { adapter.submitList(it) }
         }
 
-        return binding.root
-    }
+            return binding.root
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+        }
 
-}
+        companion object {
+            private const val TAG = "HomeFragment"
+        }
+
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        }
+
+    }

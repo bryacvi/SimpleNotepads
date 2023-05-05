@@ -22,26 +22,32 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="295dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="6dp"
+            android:layout_toStartOf="@+id/btnEdit"
             android:padding="5dp"
-            android:text="lastname"
+            android:text="Sample Text"
             android:textColor="?attr/colorPrimary"
             android:textSize="16dp" />
 
-        <TextView
+        <Button
             android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="33dp"
             android:layout_alignParentRight="true"
+            android:backgroundTint="?attr/colorSecondary"
             android:drawableLeft="@android:drawable/ic_delete"
             android:padding="5dp" />
 
-        <TextView
+        <Button
             android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="33dp"
             android:layout_marginRight="2dp"
+            android:backgroundTint="?attr/colorSecondary"
             android:layout_toLeftOf="@+id/btnDelete"
             android:drawableLeft="@android:drawable/ic_menu_edit"
             android:padding="5dp" />
