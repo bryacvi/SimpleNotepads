@@ -19,6 +19,7 @@ package com.example.simple_notepads.examples.word
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -35,9 +36,14 @@ class WordListAdapter(private val onClickListener: OnClickListener) : ListAdapte
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = getItem(position)
-        holder.itemView.setOnClickListener {
+//        holder.itemView.setOnClickListener {
+//            onClickListener.onClick(current)
+//        }
+
+        holder.itemView.findViewById<Button>(R.id.btnDelete).setOnClickListener {
             onClickListener.onClick(current)
         }
+
         holder.bind(current.word)
     }
 
