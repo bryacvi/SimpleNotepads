@@ -16,26 +16,18 @@
 
 package com.example.simple_notepads.examples.word
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.R
-import com.example.simple_notepads.WordsApplication
-import com.example.simple_notepads.databinding.ActivityMainBinding
 import com.example.simple_notepads.examples.word.WordListAdapter.WordViewHolder
 import com.example.simple_notepads.ui.home.HomeFragment
-import com.example.simple_notepads.ui.home.HomeViewModel
-import com.example.simple_notepads.ui.noteManagement.WordViewModelFactory
 
-class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
+class WordListAdapter(private val onClickListener: OnClickListener) : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         return WordViewHolder.create(parent)
@@ -43,14 +35,35 @@ class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(current)
+        }
         holder.bind(current.word)
+    }
+
+    class OnClickListener(val clickListener: (word: Word) -> Unit) {
+        fun onClick(word: Word) = clickListener(word)
     }
 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val wordItemView: TextView = itemView.findViewById(R.id.name)
-        //private val wordViewModel: WordViewModel by viewModels {
-        //    WordViewModelFactory((activity?.application as WordsApplication).repository)
-        //}
+
+//        view.findViewById<Button>(R.id.btnDelete)?.setOnClickListener {
+//            val txtNoteContent = view?.findViewById<TextView>(R.id.name)
+//            val word = txtNoteContent?.text.toString()
+//            Log.i("Buttons", "Delete button pressed")
+//            //wordViewModel.remove(Word(word))
+//            //adapter.destroy()
+//            //adapter.update()
+//            adapter.notification()
+//        }
+//
+//        view.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
+//            val txtNoteContent = view?.findViewById<TextView>(R.id.name)
+//            val word = txtNoteContent?.text.toString()
+//            Log.i("Buttons", "Edit button pressed")
+//            //wordViewModel.edit(Word(word))
+//        }
 
         fun bind(text: String?) {
             wordItemView.text = text
@@ -61,23 +74,6 @@ class WordListAdapter : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
                 lateinit var adapter: HomeFragment
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.list_item, parent, false)
-
-                view.findViewById<Button>(R.id.btnDelete)?.setOnClickListener {
-                    val txtNoteContent = view?.findViewById<TextView>(R.id.name)
-                    val word = txtNoteContent?.text.toString()
-                    Log.i("Buttons", "Delete button pressed")
-                    //wordViewModel.remove(Word(word))
-                    //adapter.destroy()
-                    //adapter.update()
-                    adapter.notification()
-                }
-
-                view.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
-                    val txtNoteContent = view?.findViewById<TextView>(R.id.name)
-                    val word = txtNoteContent?.text.toString()
-                    Log.i("Buttons", "Edit button pressed")
-                    //wordViewModel.edit(Word(word))
-                }
 
                 return WordViewHolder(view)
             }

@@ -1,10 +1,10 @@
 package com.example.simple_notepads.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -12,11 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.R
+import com.example.simple_notepads.WordsApplication
 import com.example.simple_notepads.databinding.FragmentHomeBinding
 import com.example.simple_notepads.examples.word.WordListAdapter
 import com.example.simple_notepads.examples.word.WordViewModel
-import com.example.simple_notepads.WordsApplication
-import com.example.simple_notepads.examples.word.Word
 import com.example.simple_notepads.ui.noteManagement.WordViewModelFactory
 
 
@@ -40,7 +39,10 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        adapter = WordListAdapter()
+        adapter = WordListAdapter(
+            WordListAdapter.OnClickListener { word ->
+                Log.i(TAG, "Clicked on ${word.word}")}
+        )
         binding.rvItemList.adapter = adapter
 
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -50,17 +52,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_home_to_NewNoteFragment)
         }
 
-        /*view?.findViewById<Button>(R.id.btnDelete)?.setOnClickListener {
-            val txtNoteContent = view?.findViewById<TextView>(R.id.name)
-            //Log.i(TAG, "Delete button pressed")
-            val word = txtNoteContent?.text.toString()
-            wordViewModel.remove(Word(word))
-        }
-
-        view?.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
-            Toast.makeText(context, "You clicked me.", Toast.LENGTH_SHORT).show()
-            //wordViewModel.edit(Word(word))
-        }*/
         if (deleteValue) {
             wordViewModel.wipeDB()
         }
