@@ -1,7 +1,6 @@
 package com.example.simple_notepads.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +39,13 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         adapter = WordListAdapter(
-            WordListAdapter.OnClickListener { word ->
-                Log.i(TAG, "Clicked on ${word.word}")}
-        )
+            WordListAdapter.OnClickListenerDelete { word ->
+                wordViewModel.remove(word)
+            }, WordListAdapter.OnClickListenerEdit { word ->
+                val bundle = Bundle()
+                bundle.putString("word", word.word);
+                findNavController().navigate(R.id.action_nav_home_to_EditNoteFragment, bundle)
+            })
         binding.rvItemList.adapter = adapter
 
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)

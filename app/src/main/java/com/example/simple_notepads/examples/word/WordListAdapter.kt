@@ -28,7 +28,8 @@ import com.example.simple_notepads.R
 import com.example.simple_notepads.examples.word.WordListAdapter.WordViewHolder
 import com.example.simple_notepads.ui.home.HomeFragment
 
-class WordListAdapter(private val onClickListener: OnClickListener) : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
+class WordListAdapter(private val onClickListenerDelete: OnClickListenerDelete, private val onClickListenerEdit: OnClickListenerEdit)
+    : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         return WordViewHolder.create(parent)
@@ -41,13 +42,20 @@ class WordListAdapter(private val onClickListener: OnClickListener) : ListAdapte
 //        }
 
         holder.itemView.findViewById<Button>(R.id.btnDelete).setOnClickListener {
-            onClickListener.onClick(current)
+            onClickListenerDelete.onClick(current)
+        }
+
+        holder.itemView.findViewById<Button>(R.id.btnEdit).setOnClickListener {
+            onClickListenerEdit.onClick(current)
         }
 
         holder.bind(current.word)
     }
 
-    class OnClickListener(val clickListener: (word: Word) -> Unit) {
+    class OnClickListenerDelete(val clickListener: (word: Word) -> Unit) {
+        fun onClick(word: Word) = clickListener(word)
+    }
+    class OnClickListenerEdit(val clickListener: (word: Word) -> Unit) {
         fun onClick(word: Word) = clickListener(word)
     }
 

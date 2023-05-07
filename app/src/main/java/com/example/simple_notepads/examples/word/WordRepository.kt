@@ -16,9 +16,11 @@
 
 package com.example.simple_notepads.examples.word
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import com.example.simple_notepads.examples.word.Word
 import com.example.simple_notepads.examples.word.WordDao
+import com.example.simple_notepads.ui.home.HomeFragment
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -42,8 +44,14 @@ class WordRepository(private val wordDao: WordDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
+    suspend fun edit(word: Word, edit: Word) {
+        wordDao.edit(word.word, edit.word)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
     suspend fun remove(word: Word) {
-        wordDao.remove()
+        wordDao.remove(word.word)
     }
 
     @Suppress("RedundantSuspendModifier")

@@ -19,6 +19,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.TypeConverters
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -41,8 +42,11 @@ interface WordDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Word)
 
-    @Query("DELETE FROM word_table")
-    suspend fun remove()
+    @Query("UPDATE word_table SET Word = :edit WHERE Word = :word")
+    suspend fun edit(word: String, edit: String)
+
+    @Query("DELETE FROM word_table WHERE Word = :word")
+    suspend fun remove(word: String)
 
     @Query("DELETE FROM word_table")
     suspend fun deleteAll()

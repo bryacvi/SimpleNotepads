@@ -6,6 +6,15 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.example.simple_notepads.ui.noteManagement.EditNoteFragment"
+        android:label="Edit Note"
+        tools:layout="@layout/fragment_newnote">
+        <action
+            android:id="@+id/action_newNoteFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
         android:id="@+id/nav_home"
         android:name="com.example.simple_notepads.ui.home.HomeFragment"
         android:label="@string/menu_home"
@@ -13,6 +22,9 @@
         <action
             android:id="@+id/action_nav_home_to_NewNoteFragment"
             app:destination="@id/newNoteFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_EditNoteFragment"
+            app:destination="@id/editNoteFragment" />
     </fragment>
 
     <fragment
