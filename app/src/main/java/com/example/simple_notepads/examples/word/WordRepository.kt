@@ -16,11 +16,7 @@
 
 package com.example.simple_notepads.examples.word
 
-import android.util.Log
 import androidx.annotation.WorkerThread
-import com.example.simple_notepads.examples.word.Word
-import com.example.simple_notepads.examples.word.WordDao
-import com.example.simple_notepads.ui.home.HomeFragment
 import kotlinx.coroutines.flow.Flow
 
 /**

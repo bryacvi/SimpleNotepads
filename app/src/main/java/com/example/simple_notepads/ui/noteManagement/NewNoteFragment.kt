@@ -17,6 +17,9 @@ import com.example.simple_notepads.R
 import com.example.simple_notepads.examples.word.Word
 import com.example.simple_notepads.examples.word.WordViewModel
 import com.example.simple_notepads.WordsApplication
+import com.example.simple_notepads.examples.word.WordDao
+import com.example.simple_notepads.examples.word.WordListAdapter
+import com.example.simple_notepads.examples.word.WordRepository
 
 class NewNoteFragment : Fragment() {
     private lateinit var viewModel: NewNoteViewModel
@@ -39,13 +42,15 @@ class NewNoteFragment : Fragment() {
         val editWordView = view?.findViewById<EditText>(R.id.edit_word)
         val button = view?.findViewById<Button>(R.id.button_save)
 
+
+
         button?.setOnClickListener {
             Log.i(TAG, "Save button pressed")
+            val word = editWordView?.text.toString()
 
             if (TextUtils.isEmpty(editWordView?.text)) {
                 Toast.makeText(context, "You need to add text to save a new note", Toast.LENGTH_SHORT).show()
             } else {
-                val word = editWordView?.text.toString()
                 Log.i(TAG, word)
                 wordViewModel.insert(Word(word))
                 findNavController().navigateUp()

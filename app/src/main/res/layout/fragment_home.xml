@@ -22,6 +22,4 @@
         app:navGraph="@navigation/nav_graph"
         app:srcCompat="@drawable/ic_option_add"
         app:tint="?attr/colorPrimary" />
-
-
 </RelativeLayout>

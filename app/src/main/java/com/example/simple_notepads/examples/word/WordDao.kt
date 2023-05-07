@@ -19,7 +19,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.TypeConverters
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -44,6 +43,9 @@ interface WordDao {
 
     @Query("UPDATE word_table SET Word = :edit WHERE Word = :word")
     suspend fun edit(word: String, edit: String)
+
+    //@Query("SELECT (SELECT * from word_table WHERE Word = :word)")
+    //fun existence(word: String): Boolean
 
     @Query("DELETE FROM word_table WHERE Word = :word")
     suspend fun remove(word: String)

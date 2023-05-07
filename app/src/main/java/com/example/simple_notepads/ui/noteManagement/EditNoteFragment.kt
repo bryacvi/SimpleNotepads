@@ -1,5 +1,6 @@
 package com.example.simple_notepads.ui.noteManagement
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -17,7 +18,6 @@ import com.example.simple_notepads.R
 import com.example.simple_notepads.examples.word.Word
 import com.example.simple_notepads.examples.word.WordViewModel
 import com.example.simple_notepads.WordsApplication
-import java.security.PrivateKey
 
 class EditNoteFragment : Fragment() {
     private lateinit var viewModel: EditNoteViewModel
@@ -44,14 +44,26 @@ class EditNoteFragment : Fragment() {
 
         button?.setOnClickListener {
             Log.i(TAG, "Save button pressed")
+            val edit = editWordView?.text.toString()
 
             if (TextUtils.isEmpty(editWordView?.text) || TextUtils.equals(editWordView?.text, word)) {
                 Toast.makeText(context, "You need to edit the note to save", Toast.LENGTH_SHORT).show()
             } else {
-                val edit = editWordView?.text.toString()
-                wordViewModel.edit(Word(word), Word(edit))
-                findNavController().navigateUp()
-                Toast.makeText(context, "Note Saved Successfully", Toast.LENGTH_SHORT).show()
+                val builder = AlertDialog.Builder(context)
+                builder.setMessage("Save edited Note?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes") { dialog, id ->
+                        // Edit selected note in database
+                        wordViewModel.edit(Word(word), Word(edit))
+                        findNavController().navigateUp()
+                        Toast.makeText(context, "Note Saved Successfully", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("No") { dialog, id ->
+                        // Dismiss the dialog
+                        dialog.dismiss()
+                    }
+                val alert = builder.create()
+                alert.show()
             }
         }
     }

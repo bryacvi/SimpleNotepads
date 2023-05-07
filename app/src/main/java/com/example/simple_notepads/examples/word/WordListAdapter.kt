@@ -37,9 +37,6 @@ class WordListAdapter(private val onClickListenerDelete: OnClickListenerDelete, 
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = getItem(position)
-//        holder.itemView.setOnClickListener {
-//            onClickListener.onClick(current)
-//        }
 
         holder.itemView.findViewById<Button>(R.id.btnDelete).setOnClickListener {
             onClickListenerDelete.onClick(current)
@@ -62,30 +59,12 @@ class WordListAdapter(private val onClickListenerDelete: OnClickListenerDelete, 
     class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val wordItemView: TextView = itemView.findViewById(R.id.name)
 
-//        view.findViewById<Button>(R.id.btnDelete)?.setOnClickListener {
-//            val txtNoteContent = view?.findViewById<TextView>(R.id.name)
-//            val word = txtNoteContent?.text.toString()
-//            Log.i("Buttons", "Delete button pressed")
-//            //wordViewModel.remove(Word(word))
-//            //adapter.destroy()
-//            //adapter.update()
-//            adapter.notification()
-//        }
-//
-//        view.findViewById<Button>(R.id.btnEdit)?.setOnClickListener {
-//            val txtNoteContent = view?.findViewById<TextView>(R.id.name)
-//            val word = txtNoteContent?.text.toString()
-//            Log.i("Buttons", "Edit button pressed")
-//            //wordViewModel.edit(Word(word))
-//        }
-
         fun bind(text: String?) {
             wordItemView.text = text
         }
 
         companion object {
             fun create(parent: ViewGroup): WordViewHolder {
-                lateinit var adapter: HomeFragment
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.list_item, parent, false)
 

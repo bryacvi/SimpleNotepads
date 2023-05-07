@@ -11,10 +11,12 @@
     <string name="menu_about">About</string>
 
     <string name="refresh">Refresh</string>
-    <string name="about_welcome">Welcome to the about screen!</string>
+    <string name="about_welcome"><b><i>Kotlin Application Made By:</i></b>\nBryan Caballero
+    <b><i>\n\nMentor:</i></b>\nRachelle Reyes
+        <b><i>\n\nLinkedIn:</i></b>\nhttps://www.linkedin.com/in/bryan-caballero-5620a9221</string>
 
 
-    <string name="hint_word">Word…</string>
+    <string name="hint_word">Tap here to start your note…</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
     <string name="add_word">Add word</string>
