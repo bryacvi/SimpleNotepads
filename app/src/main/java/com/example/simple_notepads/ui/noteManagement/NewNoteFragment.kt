@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -42,14 +43,13 @@ class NewNoteFragment : Fragment() {
             Log.i(TAG, "Save button pressed")
 
             if (TextUtils.isEmpty(editWordView?.text)) {
-                // Add a message to say field is empty, with SnackBar or Toast
+                Toast.makeText(context, "You need to add text to save a new note", Toast.LENGTH_SHORT).show()
             } else {
                 val word = editWordView?.text.toString()
                 Log.i(TAG, word)
                 wordViewModel.insert(Word(word))
-                // Use a SnackBar to add success message for saving
-                // Navigate back to Home.
                 findNavController().navigateUp()
+                Toast.makeText(context, "New Note Saved Successfully", Toast.LENGTH_SHORT).show()
             }
         }
     }
