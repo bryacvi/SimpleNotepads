@@ -17,9 +17,6 @@ import com.example.simple_notepads.R
 import com.example.simple_notepads.examples.word.Word
 import com.example.simple_notepads.examples.word.WordViewModel
 import com.example.simple_notepads.WordsApplication
-import com.example.simple_notepads.examples.word.WordDao
-import com.example.simple_notepads.examples.word.WordListAdapter
-import com.example.simple_notepads.examples.word.WordRepository
 
 class NewNoteFragment : Fragment() {
     private lateinit var viewModel: NewNoteViewModel

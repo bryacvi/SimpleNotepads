@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simple_notepads.R
 import com.example.simple_notepads.examples.word.WordListAdapter.WordViewHolder
-import com.example.simple_notepads.ui.home.HomeFragment
 
 class WordListAdapter(private val onClickListenerDelete: OnClickListenerDelete, private val onClickListenerEdit: OnClickListenerEdit)
     : ListAdapter<Word, WordViewHolder>(WORDS_COMPARATOR) {
