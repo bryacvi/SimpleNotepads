@@ -17,6 +17,8 @@ import com.example.simple_notepads.R
 import com.example.simple_notepads.examples.word.Word
 import com.example.simple_notepads.examples.word.WordViewModel
 import com.example.simple_notepads.WordsApplication
+import com.example.simple_notepads.databinding.FragmentAboutBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NewNoteFragment : Fragment() {
     private lateinit var viewModel: NewNoteViewModel
@@ -38,8 +40,11 @@ class NewNoteFragment : Fragment() {
         // We can use Binding instead of looking for views like this
         val editWordView = view?.findViewById<EditText>(R.id.edit_word)
         val button = view?.findViewById<Button>(R.id.button_save)
+        val fab = view?.findViewById<FloatingActionButton>(R.id.fab)
 
-
+        fab?.setOnClickListener {
+            findNavController().navigate(R.id.action_newNoteFragment_to_calculatorFragment)
+        }
 
         button?.setOnClickListener {
             Log.i(TAG, "Save button pressed")

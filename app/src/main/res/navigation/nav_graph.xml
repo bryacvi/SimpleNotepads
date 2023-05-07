@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_newNoteFragment_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_editNoteFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_home"
@@ -40,6 +43,18 @@
         <action
             android:id="@+id/action_newNoteFragment_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_newNoteFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.example.simple_notepads.examples.calculator.CalculatorFragment"
+        android:label="CalculatorFragment"
+        tools:layout="@layout/fragment_calculator" >
+        <action
+            android:id="@+id/action_calculatorFragment_to_newNoteFragment"
+            app:destination="@id/newNoteFragment" />
     </fragment>
 
 </navigation>
