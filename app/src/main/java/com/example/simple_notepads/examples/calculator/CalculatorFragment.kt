@@ -28,6 +28,7 @@ class CalculatorFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CalculatorViewModel::class.java)
 
+        var screenText = "0"
         val numberView = view?.findViewById<TextView>(R.id.textScreen)
         //val actualValue = numberView?.text.toString()
         val button1 = view?.findViewById<Button>(R.id.button2)
@@ -47,7 +48,8 @@ class CalculatorFragment : Fragment() {
         val buttonEquals = view?.findViewById<Button>(R.id.button16)*/
 
         button1?.setOnClickListener {
-            numberView?.text = "1"
+            screenText = numberView?.text.toString() + "1"
+            numberView?.text = screenText
         }
     }
 
