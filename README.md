@@ -1,6 +1,6 @@
 
 # SimpleNotepad
 
-> Perfect for quick notes
+> Accessibility and low memory use! Perfect for quick notes
 
-Welcome to my ***Kotlin Project Repository***!
+Welcome to our ***Kotlin Project Repository***!

@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_menu_notepad"
             android:title="@string/menu_home" />
         <item
+            android:id="@+id/nav_backup"
+            android:icon="@drawable/ic_menu_backup"
+            android:title="@string/menu_backup" />
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_information"
             android:title="@string/menu_about" />
