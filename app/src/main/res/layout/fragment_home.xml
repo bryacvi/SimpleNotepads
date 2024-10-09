@@ -18,7 +18,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|end"
-        android:contentDescription="@string/nav_header_subtitle"
+        android:contentDescription="@string/new_note"
         app:navGraph="@navigation/nav_graph"
         app:srcCompat="@drawable/ic_option_add"
         app:tint="?attr/colorPrimary" />

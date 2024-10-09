@@ -40,6 +40,7 @@
             android:layout_alignParentRight="true"
             android:backgroundTint="?attr/colorSecondary"
             android:drawableLeft="@android:drawable/ic_delete"
+            android:text="@string/button_delete"
             android:padding="5dp" />
 
         <Button
@@ -50,6 +51,7 @@
             android:backgroundTint="?attr/colorSecondary"
             android:layout_toLeftOf="@+id/btnDelete"
             android:drawableLeft="@android:drawable/ic_menu_edit"
+            android:text="@string/button_edit"
             android:padding="5dp" />
     </RelativeLayout>
 
