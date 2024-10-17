@@ -19,6 +19,7 @@
 
     <string name="hint_word">Tap here to start your note…</string>
     <string name="new_note">Create a new note</string>
+    <string name="button_create">New Note</string>
     <string name="button_save">Save</string>
     <string name="button_edit">Edit note</string>
     <string name="button_delete">Delete note</string>
